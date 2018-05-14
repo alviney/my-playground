@@ -10,26 +10,24 @@
 
 <script>
 import firebase from 'firebase'
+
 export default {
-
-    data() {
-        return {
-            email:'',
-            password: ''
-        }
-    },
-
-    methods: {
-        async signUp() {
-            try {
-                const auth = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-            }
-            catch(err) {
-                alert(err.message)
-            }
-        }
+  data() {
+    return {
+      email: '',
+      password: ''
     }
-  
+  },
+
+  methods: {
+    async signUp() {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+      } catch (err) {
+        alert(err.message)
+      }
+    }
+  }
 }
 </script>
 
@@ -37,16 +35,19 @@ export default {
 .signUp {
     margin-top: 40px;
 }
+
 input {
     margin: 10px 0;
     width: 20%;
     padding: 15px;
 }
+
 button {
     margin-top: 10px;
     width: 10%;
     cursor: pointer;
 }
+
 span {
     display: block;
     margin-top: 20px;

@@ -10,14 +10,14 @@ import firebase from 'firebase'
 
 export default {
   methods: {
-      async logout() {
-          try {
-            await firebase.auth().signOut();
-            this.$router.replace('login')
-          } catch (err) {
-              alert(err.message)
-          }
+    async logout() {
+      try {
+        await firebase.auth().signOut()
+        this.$router.replace('login')
+      } catch (err) {
+        alert(err.message)
       }
+    }
   }
 }
 </script>

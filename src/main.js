@@ -1,34 +1,26 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import firebase from 'firebase';
+import firebase from 'firebase'
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
 
-Vue.config.productionTip = false;
+import store from './store'
+
+Vue.config.productionTip = false
 
 // Initialize Firebase
-let app;
-var config = {
-  apiKey: "AIzaSyDaURFRJ0EEYZfNaYE0etBtbIRsRsNAeAE",
-  authDomain: "my-playground-aa0c7.firebaseapp.com",
-  databaseURL: "https://my-playground-aa0c7.firebaseio.com",
-  projectId: "my-playground-aa0c7",
-  storageBucket: "",
-  messagingSenderId: "36083343952"
-};
+let app
 
-firebase.initializeApp(config);
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     /* eslint-disable no-new */
     new Vue({
       el: '#app',
       router,
+      store,
       components: { App },
-      template: '<App/>',
-    });
+      template: '<App/>'
+    })
   }
-});
-
-
+})

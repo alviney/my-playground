@@ -10,44 +10,46 @@
 
 <script>
 import firebase from 'firebase'
-export default {
-    data() {
-        return {
-            email: '',
-            password: ''
-        }
-    },
 
-    methods: {
-        async signIn() {
-        try {
-            const auth = await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-            this.$router.push("/")            
-        } catch(err) {
-            alert('Oops. ' + err.message)
-        } 
-        }
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
     }
+  },
+
+  methods: {
+    async signIn() {
+      try {
+        await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        this.$router.push('/')
+      } catch (err) {
+        alert(`Oops. ${err.message}`)
+      }
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
 .Login {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 input {
-    margin: 10px 0;
-    width: 10%;
-    cursor: pointer;
+  margin: 10px 0;
+  width: 10%;
+  cursor: pointer;
 }
 
 p {
-    margin-top: 40px;
-    font-size: 13px;
+  margin-top: 40px;
+  font-size: 13px;
 }
+
 p a {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
