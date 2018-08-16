@@ -32,14 +32,7 @@ const actions = {
     convoRef.add({
       created: Date.now(),
       users: ['mr_a', 'mr_b'],
-      messages: [
-        { id: uuidv4(), text: 'Hi there', sender: 'mr_a', created: Date.now() }
-      ]
-    })
-    convoRef.add({
-      created: Date.now(),
-      users: ['mr_a', 'mr_c'],
-      messages: []
+      messages: [{ id: uuidv4(), text: 'Hi there', sender: 'mr_a' }]
     })
   },
   async get({ commit, rootState }) {
@@ -50,11 +43,14 @@ const actions = {
       commit('SET_CONVERSATION', { conversation })
     })
   },
-  sendMessage({ rootState }, { text, created, sender, conversationId }) {
+  sendMessage({ rootState }, { text, sender, conversationId }) {
     const convoRef = rootState.db.collection('conversations').doc(conversationId)
-    convoRef.update({
-      messages: [...state.all[conversationId].messages, { id: uuidv4(), created, sender, text }]
-    }).then(() => console.log('Message sent.'))
+    const created = Date.now()
+    convoRef
+      .update({
+        messages: [...state.all[conversationId].messages, { id: uuidv4(), created, sender, text }]
+      })
+      .then(() => console.log('Message sent.'))
       .catch((err) => console.log('Error', err))
   }
 }

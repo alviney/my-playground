@@ -1,6 +1,7 @@
 <template>
-  <div class="Message">
+  <div class="ConversationsMessage">
       <div :class="getPosition">
+          {{ message.sender }}
           {{ message.text }}
       </div>
   </div>
@@ -28,11 +29,11 @@ export default {
 
 <style lang='stylus' scoped>
 .my.message {
-    text-align: right;
+  text-align: right;
 }
 
-.Message {
-    border: 1px solid grey;
+.ConversationsMessage {
+  border: 1px solid grey;
 }
 </style>
 

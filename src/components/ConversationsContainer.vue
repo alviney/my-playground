@@ -1,8 +1,8 @@
 <template>
   <div>
-      Conversation ID: {{ id }}
+      <!-- Conversation ID: {{ id }} -->
     <hr>
-    <Message 
+    <ConversationsMessage 
         v-for='message in conversation.messages'
         :message='message'
         :key='message.created'
@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import Message from './Message'
+import ConversationsMessage from './ConversationsMessage'
 
 export default {
   components: {
-    Message
+    ConversationsMessage
   },
 
   data() {
@@ -57,7 +57,6 @@ export default {
     send() {
       this.$store.dispatch('conversations/sendMessage', {
         text: this.newMessageText,
-        created: Date.now(),
         conversationId: this.id,
         sender: this.$store.state.users.currentUser
       })

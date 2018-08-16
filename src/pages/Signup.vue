@@ -23,6 +23,7 @@ export default {
     async signUp() {
       try {
         await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        // create user in database.
       } catch (err) {
         alert(err.message)
       }
@@ -33,24 +34,24 @@ export default {
 
 <style lang='stylus' scoped>
 .signUp {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
+  margin: 10px 0;
+  width: 20%;
+  padding: 15px;
 }
 
 button {
-    margin-top: 10px;
-    width: 10%;
-    cursor: pointer;
+  margin-top: 10px;
+  width: 10%;
+  cursor: pointer;
 }
 
 span {
-    display: block;
-    margin-top: 20px;
-    font-size: 11px;
+  display: block;
+  margin-top: 20px;
+  font-size: 11px;
 }
 </style>

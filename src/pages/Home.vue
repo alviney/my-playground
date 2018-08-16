@@ -1,32 +1,32 @@
 <template>
   <div class="Home">
-      <h2>Home</h2>
-      <button @click="logout">Logout</button>
       <div class="Home__Initilize">
         <Initialize/>
       </div>
       <div>
-        <button @click="checkIt">Check it</button>
+        <!-- <button @click="checkIt">Check it</button> -->
         <ConversationsContainer
           v-for='id in convoIds'
           :conversation='conversations[id]'
           :id='id'
           :key='id'
         />
+        <ContactsList/>
       </div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase'
 import Initialize from '../Initialize.vue'
 import ConversationsContainer from '../components/ConversationsContainer'
+import ContactsList from '../components/ContactsList'
 import { mapState } from 'vuex'
 
 export default {
   components: {
     Initialize,
-    ConversationsContainer
+    ConversationsContainer,
+    ContactsList
   },
 
   computed: {
@@ -37,15 +37,6 @@ export default {
   },
 
   methods: {
-    async logout() {
-      try {
-        await firebase.auth().signOut()
-        this.$router.replace('login')
-      } catch (err) {
-        alert(err.message)
-      }
-    },
-
     checkIt() {
       console.log(this.convoIds)
     }
@@ -54,8 +45,8 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-.Home__Initilize {
-  margin-top: 100px;
+.Home {
+  margin-top: 50px;
 }
 </style>
 
